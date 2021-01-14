@@ -1,0 +1,43 @@
+<?php
+use Magento\Framework\View\Element\Template;
+
+?>
+<form action="/exercise/submit" method="post" id="myForm">
+    <div class="title">
+        <h3>You'll wear jacket when: </h3>
+    </div>
+    <div>
+        <label>Temperature Lower Than (°F)</label>
+        <input name="temp" type="number" step=0.1 required="true">
+
+    </div>
+    <div>
+        <label>OR Wind Speed High Than (mph)</label>
+        <input name="wind" type="number" step=0.01 min=0 required="true">
+    </div>
+    <div class="title">
+        <h3>Your Location:  </h3>
+    </div>
+    <div>
+        <label>Country</label>
+        <select name="countryCode">
+            <option value="us" selected="selected">US</option>
+        </select>
+    </div>
+    <div>
+        <label>Zip Code</label>
+        <input name="zip" type="number" required="true" maxlength="5" size="5">
+    </div>
+    <input type="submit" value="Submit"  id="btnSubmit">
+</form>
+<script>
+    require(['jquery'], function($){
+        $(document).ready(function(){
+            $('#btnSubmit').click(function(){
+                $('#btnSubmit').val('Loading...');
+                $('#btnSubmit').prop('disabled', true);
+                $('#myForm').submit();
+            });
+        });
+    });
+</script>
